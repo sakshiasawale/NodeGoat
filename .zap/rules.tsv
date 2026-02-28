@@ -1,0 +1,9 @@
+10015 IGNORE  # Content-Type header missing
+10021 IGNORE
+10096 WARN    # X-Content-Type-Options missing
+10049 WARN    # X-Content-Type-Options for static assets
+40018 FAIL    # SQL Injection
+40012 FAIL    # Cross Site Scripting (Reflected)
+40014 FAIL    # Cross Site Scripting (Persistent)
+40016 FAIL    # Cross Site Request Forgery
+90019 FAIL    # Server Side Code Injection
