@@ -1,19 +1,19 @@
-// SQL Injection
+// Fixed: Parameterized query to prevent SQL Injection
 function getUserData(userId) {
-  const query = "SELECT * FROM users WHERE id = " + userId; // vulnerable
-  return db.execute(query);
+  const query = "SELECT * FROM users WHERE id = ?";
+  return db.execute(query, [userId]);
 }
 
-// XSS
+// Fixed: Avoid innerHTML to prevent XSS
 function displayUsername(username) {
-  document.getElementById('user').innerHTML = username; // XSS
+  document.getElementById('user').textContent = username;
 }
 
-// Hardcoded secret
-const API_KEY = "sk_live_1234567890abcdef";
+// Fixed: Use environment variable for secret
+const API_KEY = process.env.API_KEY;
 
-// Command injection
+// Fixed: Sanitize input to prevent Command Injection
 function executeCommand(userInput) {
-  const cmd = "ls " + userInput; // unsafe
-  require('child_process').exec(cmd);
+  const sanitized = userInput.replace(/[^a-zA-Z0-9]/g, '');
+  require('child_process').exec(`ls ${sanitized}`);
 }
